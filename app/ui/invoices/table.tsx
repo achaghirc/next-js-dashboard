@@ -4,15 +4,17 @@ import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
 
+type TableQueryType = { 
+  query: string;
+  currentPage: number;
+};
+
 export default async function InvoicesTable({
   query,
   currentPage,
-}: {
-  query: string;
-  currentPage: number;
-}) {
+}: TableQueryType) {
   const invoices = await fetchFilteredInvoices(query, currentPage);
-
+  
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
